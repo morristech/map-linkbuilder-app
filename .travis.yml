@@ -19,6 +19,7 @@ before_install:
   - export PATH=$PATH:$PWD/geckodriver
 
 before_script:
+  - npm run lint # Lint code before setting up integration testing
   - cd node_modules
   - patch -p3 < ../patch/*.patch
   - cd ..
@@ -28,6 +29,3 @@ before_script:
   - sleep 3 # Give Xvfb some time to start.
   - npm run server &
   - sleep 3 # Give the web server some time to bind to sockets, etc.
-
-after_script:
-  - npm run lint
